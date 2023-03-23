@@ -1,5 +1,6 @@
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
+
 export const statusCode = {
   SUCCESS: 200,
   BADREQUEST: 400,
@@ -8,7 +9,9 @@ export const statusCode = {
   CREATED: 201,
   SERVER_ERROR: 500,
 };
+
 const secret_key = "*@#$%^&*()-_=+";
+
 export const responseData = ({
   res,
   statusCode,
@@ -55,4 +58,15 @@ export const generateNewToken = async (payload, schedule = 60) => {
     );
   });
   return token;
+};
+
+export const send = ({ response, statusCode, message, result, error }) => {
+	let resultObj = {};
+	if (message)
+		resultObj.message = message;
+	if (result)
+		resultObj.result = result;
+	if (error)
+		resultObj.error = error;
+	return response.status(statusCode).send(resultObj);
 };

@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
 
 const contactUsSchema = new mongoose.Schema({
   firstName: {
@@ -18,7 +18,7 @@ const contactUsSchema = new mongoose.Schema({
     required: true
   },
   contactNumber: {
-    type: Number,
+    type: String,
     required: true,
 },
   message: {
