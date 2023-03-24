@@ -1,4 +1,5 @@
-const mongoose = require("mongoose");
+import mongoose from 'mongoose';
+
 
 const feedbackSchema = new mongoose.Schema({
   name: {
@@ -14,7 +15,7 @@ const feedbackSchema = new mongoose.Schema({
     required: true,
   },
   contactNumber: {
-    type: Number,
+    type: String,
     required: true,
   },
   websiteName: {
