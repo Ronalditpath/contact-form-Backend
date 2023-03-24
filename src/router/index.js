@@ -1,6 +1,6 @@
-import { Router } from "express";
+import Router from "express";
 import { responseData, statusCode } from "../helper/helper.js";
-import {createContactForm} from "../controller/users.js";
+import { createContactForm } from "../controller/users.js";
 
 
 const router = Router();
