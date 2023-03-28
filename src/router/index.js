@@ -1,15 +1,17 @@
 import Router from "express";
-import { responseData, statusCode } from "../helper/helper.js";
+import { responseMessage, statusCode } from "../helper/helper.js";
 import { createContactForm, createFeedback } from "../controller/users.js";
 
 
 const router = Router();
 
 router.get("/checkServer", (req, res) => {
-  return responseData({
+  return responseMessage({
     res,
     statusCode: statusCode.SUCCESS,
     message: "Called Successfully",
+    success:1,
+    
   });
 });
 

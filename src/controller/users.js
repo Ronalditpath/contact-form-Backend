@@ -1,27 +1,45 @@
-import { send } from "../helper/helper.js";
 import { contactForm, feedbackForm } from "../services/users.js";
-import { responseData, statusCode } from "../helper/helper.js";
-
+import { responseMessage, statusCode } from "../helper/helper.js";
 
 export const createContactForm = async (request, response) => {
-    try {
-        const result = await contactForm(request.body);
-        if (!result)
-            return send({ response, statusCode: statusCode.BADREQUEST, message: "Bad Request" })
-        send({ response, ...result })
-    }
-    catch (error) {
-        throw Error(error)
-    }
-}
+  try {
+    const result = await contactForm(request.body);
+    if (!result)
+      return responseMessage({
+        success: 0,
+        response,
+        statusCode: statusCode.BADREQUEST,
+        message: "Bad Request",
+      });
+    responseMessage({ response, ...result });
+  } catch (error) {
+    return responseMessage({
+      response,
+      statusCode: statusCode.BADREQUEST,
+      message: "Bad Request",
+      error: error,
+      success: 0,
+    });
+  }
+};
 export const createFeedback = async (request, response) => {
-    try {
-        const result = await feedbackForm(request.body);
-        if (!result)
-            return send({ response, statusCode: statusCode.BADREQUEST, message: "Bad Request" })
-        send({ response, ...result })
-    }
-    catch (error) {
-        throw Error(error)
-    }
-}
+  try {
+    const result = await feedbackForm(request.body);
+    if (!result)
+      return responseMessage({
+        success: 0,
+        response,
+        statusCode: statusCode.BADREQUEST,
+        message: "Bad Request",
+      });
+    responseMessage({ response, ...result });
+  } catch (error) {
+    return responseMessage({
+      response,
+      statusCode: statusCode.BADREQUEST,
+      message: "Bad Request",
+      error: error,
+      success: 0,
+    });
+  }
+};

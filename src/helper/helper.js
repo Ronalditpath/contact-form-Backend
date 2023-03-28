@@ -12,28 +12,10 @@ export const statusCode = {
 
 const secret_key = "*@#$%^&*()-_=+";
 
-export const responseData = ({
-  res,
-  statusCode,
-  success,
-  message,
-  data,
-  error,
-}) => {
-  const resultObj = {
-    success: success,
-    message: message,
-    data: data,
-    error: error,
-  };
-  return res.status(statusCode).send(resultObj);
-};
-
-
 export const verifyUserToken = async (token) => {
-  const isVerified = jwt.verify(token, secret_key)
-  return isVerified
-}
+  const isVerified = jwt.verify(token, secret_key);
+  return isVerified;
+};
 
 export const hashPassword = async (value) => {
   const saltRounds = 10;
@@ -60,13 +42,19 @@ export const generateNewToken = async (payload, schedule = 60) => {
   return token;
 };
 
-export const send = ({ response, statusCode, message, result, error }) => {
-	let resultObj = {};
-	if (message)
-		resultObj.message = message;
-	if (result)
-		resultObj.result = result;
-	if (error)
-		resultObj.error = error;
-	return response.status(statusCode).send(resultObj);
+export const responseMessage = ({
+  response,
+  statusCode,
+  message,
+  result,
+  error,
+  success,
+}) => {
+  let resultObj = {
+    success: success,
+    message: message,
+    result: result,
+    error: error,
+  };
+  return response.status(statusCode).send(resultObj);
 };

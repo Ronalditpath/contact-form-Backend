@@ -6,7 +6,7 @@ import router from "./src/router/index.js";
 const PORT = 4000 || process.env.PORT;
 const App = express();
 dbConect
-  .then((data) => {
+  .then(() => {
     console.log("Started Server");
   })
   .catch((error) => {
